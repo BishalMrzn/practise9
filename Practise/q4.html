@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let p1 = async () => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(10);
+          }, 2000);
+        });
+      };
+      let p2 = async () => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(30);
+          }, 4000);
+        });
+      };
+      let p3 = async () => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(20);
+          }, 3000);
+        });
+      };
+      const run = async () => {
+        console.time();
+        let a1 = p1();
+        let a2 = p2();
+        let a3 = p3();
+        let a123 = await Promise.all([a1, a2, a3]);
+        console.log(a123);
+        console.timeEnd();
+      };
+      run();
+    </script>
+  </body>
+</html>
